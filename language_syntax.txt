@@ -1,0 +1,59 @@
+egy argumentes function:
+[FN:test, [V: {text:int=1}]]
+psh:({text})
+[/FN:test]
+
+Output:1
+-------------------------
+
+több argumantes function:
+[FN:test, [V: {test_1:vfloat=0.1}{test_2:string=asd}]]
+psh:({test_1}{test_2})
+
+[/FN:test]
+
+Output:0.1asd
+-------------------------
+
+variant types:
+    string = szöveg
+    vfloat = nem egész szám
+    int = egész szám
+    bool = igaz/hamis = TRUE/FALSE röviden -> T/F 
+
+Nincsen indent!
+Nincsenek külön-külön scope-ok!
+
+globális variant -> [V: variant_name: int=1]
+lokális variant (csak a "meghívó" functionban érhetőek el! A meghívó functionon kívől nem érhetőek) -> [FN asd, [V: {variant_name:string=asd}]] ha több variantot akarok akkor -> [FN asd, [V: {variant_name:string=asd}{variant_name_2:string=asd_ketto}]]
+
+
+
+1. Függvények deklarálása:
+    Argumentum nélküli függvény:
+[FN:test]
+psh:({}) -> NULL ÉRTÉK (Nincs szöveg ki irás)
+[/FN:test]
+
+Operators:
+egyenlö(ténylegesen egynlő): ==
+egyenlö(egy értékel vagy variant-tal): =
+nem egyenlö: !=
+kisebb : <
+nem kisebb : !<
+nagyobb : >
+nem nagyobb : !>
+kisebb-egyenlö : >=
+nagyobb-egyenlö : <=
+
+
+
+Feltétel:
+[IF : variant_name == 100 [DO: random_function_name[] ]] [/IF]
+[ELIF : variant_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
+[ELSE: [random_function_name_3[]]] [/ELSE]
+#a [DO:[]] ->nem kötelező de ha azt akarod hogy csináljon is valamit az if statement helyes végrehajtása után, akkor bele kell tenni!
+#egyéb "parancsszavak":
+    DO -> csináljon/futassa le
+    PASS -> nemcsinál semmit és tovább megy a következő sorra.
+    
