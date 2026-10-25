@@ -27,7 +27,12 @@ Nincsenek külön-külön scope-ok!
 globális variant -> [V: variant_name: int=1]
 lokális variant (csak a "meghívó" functionban érhetőek el! A meghívó functionon kívől nem érhetőek) -> [FN asd, [V: {variant_name:string=asd}]] ha több variantot akarok akkor -> [FN asd, [V: {variant_name:string=asd}{variant_name_2:string=asd_ketto}]]
 
-
+to modify a varian after it been created:
+    if you want to change its type, write this:
+        varname[@type:int=1] -> The "@"-is the edit keyword. Then the type you want to change the previus type to. WARNING! If you change a variant type but not dont change a value then it does this:
+        every number if it was bigger then 0 , means its true. So if you change a int to bool then and its int value vas 1 , then it becomes TRUE as a boolean value. 
+    if you dont want to change it type and on the value, write this:
+        asd
 
 1. Függvények deklarálása:
     Argumentum nélküli függvény:
@@ -47,13 +52,15 @@ kisebb-egyenlö : >=
 nagyobb-egyenlö : <=
 
 
+To call a function without arguments: function_name[]
+
 
 Feltétel:
 [IF : variant_name == 100 [DO: random_function_name[] ]] [/IF]
 [ELIF : variant_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
 [ELSE: [random_function_name_3[]]] [/ELSE]
 #a [DO:[]] ->nem kötelező de ha azt akarod hogy csináljon is valamit az if statement helyes végrehajtása után, akkor bele kell tenni!
-#egyéb "parancsszavak":
+#Command Words:
     DO -> csináljon/futassa le
     PASS -> nemcsinál semmit és tovább megy a következő sorra.
     
