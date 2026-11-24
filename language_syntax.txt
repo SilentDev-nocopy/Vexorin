@@ -48,8 +48,8 @@ kisebb : <
 nem kisebb : !<
 nagyobb : >
 nem nagyobb : !>
-kisebb-egyenlö : >=
-nagyobb-egyenlö : <=
+kisebb-egyenlö : <=
+nagyobb-egyenlö : >=
 
 
 To call a function without arguments: function_name[]
