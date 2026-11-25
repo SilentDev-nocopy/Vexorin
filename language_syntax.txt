@@ -1,4 +1,7 @@
-egy argumentes function:
+Vexorin: a compiled language with its own compiler.
+The compiler will throws back on every error and does not let you compile until there is no error.
+
+One-argument function:
 [FN:test, [V: {text:int=1}]]
 psh:({text})
 [/FN:test]
@@ -6,7 +9,7 @@ psh:({text})
 Output:1
 -------------------------
 
-több argumantes function:
+Multiple-argument function:
 [FN:test, [V: {test_1:vfloat=0.1}{test_2:string=asd}]]
 psh:({test_1}{test_2})
 
@@ -15,52 +18,52 @@ psh:({test_1}{test_2})
 Output:0.1asd
 -------------------------
 
-variant types:
-    string = szöveg
-    vfloat = nem egész szám
-    int = egész szám
-    bool = igaz/hamis = TRUE/FALSE röviden -> T/F 
+Variant types:
+    string = text
+    vfloat = non-integer number
+    int = integer
+    bool = true/false = TRUE/FALSE, shortened -> T/F
 
-Nincsen indent!
-Nincsenek külön-külön scope-ok!
+Indentation is not used!
+Separate scopes are not used!
 
-globális variant -> [V: variant_name: int=1]
-lokális variant (csak a "meghívó" functionban érhetőek el! A meghívó functionon kívől nem érhetőek) -> [FN asd, [V: {variant_name:string=asd}]] ha több variantot akarok akkor -> [FN asd, [V: {variant_name:string=asd}{variant_name_2:string=asd_ketto}]]
+Global variant -> [V: variant_name: int=1]
+Local variant (accessible only in the calling function; not accessible outside the calling function) -> [FN asd, [V: {variant_name:string=asd}]]. To use multiple variants -> [FN asd, [V: {variant_name:string=asd}{variant_name_2:string=asd_ketto}]]
 
-to modify a varian after it been created:
-    if you want to change its type, write this:
-        varname[@type:int=1] -> The "@"-is the edit keyword. Then the type you want to change the previus type to. WARNING! If you change a variant type but not dont change a value then it does this:
-        every number if it was bigger then 0 , means its true. So if you change a int to bool then and its int value vas 1 , then it becomes TRUE as a boolean value. 
-    if you dont want to change it type and on the value, write this:
+To modify a variant after it has been created:
+    To change its type:
+        varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type you want to change the previous type to. WARNING! If you change a variant type but do not change its value, the following occurs:
+        Any number greater than 0 becomes true. For example, if you change an int variant with value 1 to bool, it becomes TRUE.
+    To change only the value:
         asd
 
-1. Függvények deklarálása:
-    Argumentum nélküli függvény:
+1. Function declarations:
+    Function without arguments:
 [FN:test]
-psh:({}) -> NULL ÉRTÉK (Nincs szöveg ki irás)
+psh:({}) -> NULL VALUE (No text is written)
 [/FN:test]
 
 Operators:
-egyenlö(ténylegesen egynlő): ==
-egyenlö(egy értékel vagy variant-tal): =
-nem egyenlö: !=
-kisebb : <
-nem kisebb : !<
-nagyobb : >
-nem nagyobb : !>
-kisebb-egyenlö : <=
-nagyobb-egyenlö : >=
+equal (strict equality): ==
+equal (to a value or variant): =
+not equal: !=
+less than: <
+not less than: !<
+greater than: >
+not greater than: !>
+less than or equal to: <=
+greater than or equal to: >=
 
 
-To call a function without arguments: function_name[]
+Call a function without arguments: function_name[]
 
 
-Feltétel:
+Condition:
 [IF : variant_name == 100 [DO: random_function_name[] ]] [/IF]
 [ELIF : variant_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
 [ELSE: [random_function_name_3[]]] [/ELSE]
-#a [DO:[]] ->nem kötelező de ha azt akarod hogy csináljon is valamit az if statement helyes végrehajtása után, akkor bele kell tenni!
-#Command Words:
-    DO -> csináljon/futassa le
-    PASS -> nemcsinál semmit és tovább megy a következő sorra.
+#The [DO:[]] section is optional. Add it if you want an action to run after the if statement executes successfully.
+#Command words:
+    DO -> do/run
+    PASS -> do nothing and continue with the next line.
     
