@@ -20,7 +20,7 @@ psh:({test_1},{test_2})
 Output:0.1asd
 -------------------------
 
-Variant types:
+variable types:
 	string = text
 	flt = non-integer number
 	int = integer
@@ -29,10 +29,12 @@ Variant types:
 Indentation is not used!
 Separate scopes are not used!
 
-Global variant -> $Global [V:variant_name:int=1] # You can "bundle" them together, so you dont have to write "$Global" to every global variable. To bundle them use "{}". Use it like this: "$Global {[V:variant_name:int=1],[V:variant_name_2:flt=3]}
-Local variant (accessible only in the calling function; not accessible outside the calling function) ->$Local [FN asd, [V: {variant_name:string=asd}]]. To use multiple variants -> [FN asd, [V: {variant_name:string=asd},{variant_name_2:string=asd_ketto}]]
+Global variable -> $Global [V:variable_name:int=1] # You can "bundle" them together, so you dont have to write "$Global" to every global variable. To bundle them use "{}". Use it like this: "$Global {[V:variable_name:int=1],[V:variable_name_2:flt=3]}
+Local variable (accessible only in the calling function; not accessible outside the calling function) ->$Local [FN asd, [V: {variable_name:string=asd}]]. To use multiple variables -> [FN asd, [V: {variable_name:string=asd},{variable_name_2:string=asd_ketto}]]
 
-To modify a variant after it has been created:
+
+
+To modify a variable after it has been created:
 	To change its type:
 		varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type you want to change the previous type to. Warning! if you change the type, the value does not change! So if you have a flt type variable and value and you set its type to bool, then it will become a bool type variable with an flt value. 
 	To change only the value:
@@ -67,7 +69,7 @@ psh:({}) -> NULL VALUE (No text is written)
 
 Operators:
 equal (strict equality): ==
-equal (to a value or variant): =
+equal (to a value or variable): =
 not equal: !=
 less than: <
 not less than: !<
@@ -81,8 +83,8 @@ Call a function without arguments: function_name[]
 
 
 Condition:
-[IF : variant_name == 100 [DO: random_function_name[] ]] [/IF]
-[ELIF : variant_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
+[IF : variable_name == 100 [DO: random_function_name[] ]] [/IF]
+[ELIF : variable_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
 [ELSE: [random_function_name_3[]]] [/ELSE]
 #The [DO:[]] section is optional. Add it if you want an action to run after the if statement executes successfully.
 #Command words:
