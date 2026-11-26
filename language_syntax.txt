@@ -2,7 +2,7 @@ Vexorin: a compiled language with its own compiler.
 The compiler will throws back on every error and does not let you compile until there is no error.
 
 One-argument function:
-[FN:test, [V: {text:int=1}]]
+[FN:test, [V: {variable_name:int=1}]]
 psh:({text})
 [/FN:test]
 
@@ -11,7 +11,7 @@ Output:1
 
 Multiple-argument function:
 [FN:test, [V: {test_1:vfloat=0.1}{test_2:string=asd}]]
-psh:({test_1}{test_2})
+psh:({test_1},{test_2})
 
 [/FN:test]
 
@@ -20,7 +20,7 @@ Output:0.1asd
 
 Variant types:
     string = text
-    vfloat = non-integer number
+    flt = non-integer number
     int = integer
     bool = true/false = TRUE/FALSE, shortened -> T/F
 
