@@ -1,4 +1,4 @@
-This file contains the rules for the Vexorin compiler.
+This file contains the rules for the Veroxin compiler.
 The compiler will be written in Go.
 It is a command-line tool.
 It builds applications from .vex files.
@@ -9,17 +9,24 @@ The compiler always looks for a .vex file named "main.vex".
 LLVM will be used to translate the code into machine code.
 The required LLVM files will be downloaded to the compiler_folder directory inside the .vex target file folder.
 It is not designed for speed; instead, it aims to make the compilation process almost readable. Except for the first compilation, the minimum compilation time will be at least 3 seconds.
+On linux to be able to use the Veroxin
+language folder system:
+    Vexorin/
+    ├── Compiler
+    └── Modules/
+     ├── SDL_module
+
 
 
 Usage:
-    vexorin version -> Displays the compiler's and language's names and version numbers.
+    veroxin version -> Displays the compiler's and language's names and version numbers.
     From the directory containing the .vex file:
-        vexorin build -t linux-x64  # Other targets: linux-arm64, windows-x64, windows-arm64, macos-arm64, macos-x64. If no target is specified, the app is built for the current OS.
-        vexorin check -> Checks the specified file for errors.
-        vexorin clean -> Removes all files and folders created during compilation, leaving only the built application.
+        veroxin build -t linux-x64  # Other targets: linux-arm64, windows-x64, windows-arm64, macos-arm64, macos-x64. If no target is specified, the app is built for the current OS.
+        veroxin check -> Checks the specified file for errors.
+        veroxin clean -> Removes all files and folders created during compilation, leaving only the built application.
 
 
     From another directory:
-        vexorin build filepath -t targets
-        vexorin check filepath -> Checks the specified file for errors.
-        vexorin clean filepath
+        veroxin build filepath -t targets
+        veroxin check filepath -> Checks the specified file for errors.
+        veroxin clean filepath

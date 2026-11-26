@@ -1,4 +1,4 @@
-Vexorin: a compiled language with its own compiler.
+Veroxin: a compiled language with its own compiler.
 The compiler will throws back on every error and does not let you compile until there is no error.
 Its own compiler will be writen in GO.
 
@@ -58,6 +58,8 @@ Global functions can be exported and accessed outside its "ownning" file.
 
 ";" seperates stuff from each other. Like functions, variables and others. With this you can write multiple functions and others in one line.
 "," seperates stuff when you list things up. 
+
+To get access to other .vex files and they code, use the "$Include 
 
 The compiler gives error on not matching type and value!
 
