@@ -48,8 +48,7 @@ To modify a variant after it has been created:
 				Global variable:
 					varname[@value=[var_name2]]
 				Local variable:
-					varname[@value=[var_name2]]
-
+					same as global variable but it only can access it own function's variable
 
 1. Function declarations:
     Function without arguments:
