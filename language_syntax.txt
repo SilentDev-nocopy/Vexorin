@@ -12,7 +12,7 @@ Output:1
 -------------------------
 
 Multiple-argument function:
-[FN:test, [V: {test_1:flt=0.1}{test_2:string=asd}]]
+[FN:test, [V: {test_1:flt=0.1},{test_2:string=asd}]]
 psh:({test_1},{test_2})
 
 [/FN:test]
@@ -29,8 +29,8 @@ Variant types:
 Indentation is not used!
 Separate scopes are not used!
 
-Global variant -> [V: variant_name: int=1]
-Local variant (accessible only in the calling function; not accessible outside the calling function) -> [FN asd, [V: {variant_name:string=asd}]]. To use multiple variants -> [FN asd, [V: {variant_name:string=asd}{variant_name_2:string=asd_ketto}]]
+Global variant -> $Global [V:variant_name:int=1] # You can "bundle" them together, so you dont have to write "$Global" to every global variable. To bundle them use "{}". Use it like this: "$Global {[V:variant_name:int=1],[V:variant_name_2:flt=3]}
+Local variant (accessible only in the calling function; not accessible outside the calling function) ->$Local [FN asd, [V: {variant_name:string=asd}]]. To use multiple variants -> [FN asd, [V: {variant_name:string=asd},{variant_name_2:string=asd_ketto}]]
 
 To modify a variant after it has been created:
 	To change its type:
@@ -49,6 +49,15 @@ To modify a variant after it has been created:
 					varname[@value=[var_name2]]
 				Local variable:
 					same as global variable but it only can access it own function's variable
+
+Functions can be public or Global. To set they access "location" add the "$Local" or "$Global" word before the func name
+Local functions only avaible in the file the function is writen in. It couldnt be exported to accessed.
+Global functions can be exported and accessed outside its "ownning" file.
+
+";" seperates stuff from each other. Like functions, variables and others. With this you can write multiple functions and others in one line.
+"," seperates stuff when you list things up. 
+
+The compiler gives error on not matching type and value!
 
 1. Function declarations:
 	Function without arguments:
