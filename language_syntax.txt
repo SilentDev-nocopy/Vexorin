@@ -1,5 +1,7 @@
 Vexorin: a compiled language with its own compiler.
 The compiler will throws back on every error and does not let you compile until there is no error.
+Its own compiler will be writen in GO.
+
 
 One-argument function:
 [FN:test, [V: {variable_name:int=1}]]
@@ -10,7 +12,7 @@ Output:1
 -------------------------
 
 Multiple-argument function:
-[FN:test, [V: {test_1:vfloat=0.1}{test_2:string=asd}]]
+[FN:test, [V: {test_1:flt=0.1}{test_2:string=asd}]]
 psh:({test_1},{test_2})
 
 [/FN:test]
@@ -32,10 +34,22 @@ Local variant (accessible only in the calling function; not accessible outside t
 
 To modify a variant after it has been created:
     To change its type:
-        varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type you want to change the previous type to. WARNING! If you change a variant type but do not change its value, the following occurs:
-        Any number greater than 0 becomes true. For example, if you change an int variant with value 1 to bool, it becomes TRUE.
+        varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type you want to change the previous type to. Warning! if you change the type, the value does not change! So if you have a flt type variable and value and you set its type to bool, then it will become a bool type variable with an flt value. 
     To change only the value:
-        asd
+        varname[@value:int=2] -> Yes. To change any variable's value, you have to use the "@value" keyword
+		To change both:
+				varname[@type&value:flt=3.1] -> Use the "&" to connect the type and value change keyword.
+		To set a variable type to another variable's type:
+				Global variable:
+					varname[@type:[var_name2]]
+				Local variable:
+					same as global variable but it only can access it own function's variable
+		To set a variable value to another variable's value:
+				Global variable:
+					varname[@value=[var_name2]]
+				Local variable:
+					varname[@value=[var_name2]]
+
 
 1. Function declarations:
     Function without arguments:
