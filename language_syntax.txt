@@ -1,17 +1,17 @@
-Veroxin: a compiled language with its own compiler.
-The compiler will throws back on every error and does not let you compile until there is no error.
-Its own compiler will be writen in GO.
+Veroxin is a compiled language with its own compiler.
+The compiler reports every error and prevents compilation until all errors are resolved.
+The compiler is written in Go.
 
 
-One-argument function:
+Function with one argument:
 [FN:test, [V: {variable_name:int=1}]]
-psh:({text})
+psh:({variable_name})
 [/FN:test]
 
 Output:1
 -------------------------
 
-Multiple-argument function:
+Function with multiple arguments:
 [FN:test, [V: {test_1:flt=0.1},{test_2:string=asd}]]
 psh:({test_1},{test_2})
 
@@ -20,7 +20,7 @@ psh:({test_1},{test_2})
 Output:0.1asd
 -------------------------
 
-variable types:
+Variable types:
 	string = text
 	flt = non-integer number
 	int = integer
@@ -29,39 +29,39 @@ variable types:
 Indentation is not used!
 Separate scopes are not used!
 
-Global variable -> $Global [V:variable_name:int=1] # You can "bundle" them together, so you dont have to write "$Global" to every global variable. To bundle them use "{}". Use it like this: "$Global {[V:variable_name:int=1],[V:variable_name_2:flt=3]}
-Local variable (accessible only in the calling function; not accessible outside the calling function) ->$Local [FN asd, [V: {variable_name:string=asd}]]. To use multiple variables -> [FN asd, [V: {variable_name:string=asd},{variable_name_2:string=asd_ketto}]]
+Global variable -> $Global [V:variable_name:int=1] # You can "bundle" multiple variables together instead of writing "$Global" before each one. To bundle them, use "{}". Example: "$Global {[V:variable_name:int=1],[V:variable_name_2:flt=3]}"
+Local variable (accessible only inside the calling function) -> $Local [FN asd, [V: {variable_name:string=asd}]]. To use multiple variables: [FN asd, [V: {variable_name:string=asd},{variable_name_2:string=asd_ketto}]]
 
 
 
 To modify a variable after it has been created:
 	To change its type:
-		varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type you want to change the previous type to. Warning! if you change the type, the value does not change! So if you have a flt type variable and value and you set its type to bool, then it will become a bool type variable with an flt value. 
+		varname[@type:int=1] -> The "@" is the edit keyword. It is followed by the type to which the variable should be changed. Warning: changing the type does not change the value. For example, if you have a variable with the `flt` type and value and change its type to `bool`, it becomes a `bool` variable with a `flt` value.
 	To change only the value:
-		varname[@value:int=2] -> Yes. To change any variable's value, you have to use the "@value" keyword
-		To change both:
-				varname[@type&value:flt=3.1] -> Use the "&" to connect the type and value change keyword.
-		To set a variable type to another variable's type:
-				Global variable:
-					varname[@type:[var_name2]]
-				Local variable:
-					same as global variable but it only can access it own function's variable
-		To set a variable value to another variable's value:
-				Global variable:
-					varname[@value=[var_name2]]
-				Local variable:
-					same as global variable but it only can access it own function's variable
+		varname[@value:int=2] -> To change a variable's value, use the "@value" keyword.
+	To change both:
+		varname[@type&value:flt=3.1] -> Use "&" to combine the type and value change keywords.
+	To set a variable's type from another variable:
+		Global variable:
+			varname[@type:[var_name2]]
+		Local variable:
+			Use the same syntax as for a global variable, but it can access only variables in its own function.
+	To set a variable's value from another variable:
+		Global variable:
+			varname[@value=[var_name2]]
+		Local variable:
+			Use the same syntax as for a global variable, but it can access only variables in its own function.
 
-Functions can be public or Global. To set they access "location" add the "$Local" or "$Global" word before the func name
-Local functions only avaible in the file the function is writen in. It couldnt be exported to accessed.
-Global functions can be exported and accessed outside its "ownning" file.
+Functions can be local or global. To set their access location, add "$Local" or "$Global" before the function name.
+Local functions are available only in the file where they are written and cannot be exported or accessed from other files.
+Global functions can be exported and accessed from outside their owning file.
 
-";" seperates stuff from each other. Like functions, variables and others. With this you can write multiple functions and others in one line.
-"," seperates stuff when you list things up. 
+";" separates statements such as functions and variables. It allows multiple statements to be written on the same line.
+"," separates items in a list.
 
-To get access to other .vex files and they code, use the "$Include 
+To access code from another `.vex` file, use `$Include filename.vex`. To include multiple files, place their names inside `{}` and separate them with commas.
 
-The compiler gives error on not matching type and value!
+The compiler reports an error when a value does not match its variable type.
 
 1. Function declarations:
 	Function without arguments:
@@ -71,7 +71,7 @@ psh:({}) -> NULL VALUE (No text is written)
 
 Operators:
 equal (strict equality): ==
-equal (to a value or variable): =
+assigned from a value or variable: =
 not equal: !=
 less than: <
 not less than: !<
@@ -84,11 +84,11 @@ greater than or equal to: >=
 Call a function without arguments: function_name[]
 
 
-Condition:
+Conditions:
 [IF : variable_name == 100 [DO: random_function_name[] ]] [/IF]
 [ELIF : variable_name == 101 [DO: random_function_name_2[] ]] [/ELIF]
 [ELSE: [random_function_name_3[]]] [/ELSE]
-#The [DO:[]] section is optional. Add it if you want an action to run after the if statement executes successfully.
+#The [DO: ...] section is optional. Add it if you want an action to run after the IF statement succeeds.
 #Command words:
 	DO -> do/run
 	PASS -> do nothing and continue with the next line.

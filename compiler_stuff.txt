@@ -9,7 +9,7 @@ The compiler always looks for a .vex file named "main.vex".
 LLVM will be used to translate the code into machine code.
 The required LLVM files will be downloaded to the compiler_folder directory inside the .vex target file folder.
 It is not designed for speed; instead, it aims to make the compilation process almost readable. Except for the first compilation, the minimum compilation time will be at least 3 seconds.
-On linux to be able to use the Veroxin
+On Linux, to use Veroxin, simply download it from GitHub into any folder and run the install.sh file. It will create a symlink to the compiler executable, allowing the veroxin command to be used from any directory. The compiler will use the shared Modules directory to locate imported modules.
 language folder system:
     Vexorin/
     ├── Compiler
