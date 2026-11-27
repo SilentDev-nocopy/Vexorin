@@ -25,6 +25,8 @@ Variable types:
 	flt = non-integer number
 	int = integer
 	bool = true/false = TRUE/FALSE, shortened -> T/F
+	mod = an external `.vex` file located in the `Vexorin/Modules` directory
+	
 
 Indentation is not used!
 Separate scopes are not used!
@@ -61,12 +63,19 @@ Global functions can be exported and accessed from outside their owning file.
 
 To access code from another `.vex` file, use `$Include filename.vex`. To include multiple files, place their names inside `{}` and separate them with commas.
 
+To access additional, non-built-in features, include modules with the `$Module` keyword. For example, use `$Module module_name`. To include multiple modules, enclose their names in `{}` and separate them with commas.
+
+To set a module to a variable write this:
+@Global	[V:variable_name:mod=$Module:module_name] -> yes, here you have to put colon after $Module, otherwise the compiler may interpret the module name as a regular value instead of a module reference. 
+
 The compiler reports an error when a value does not match its variable type.
+The compiler removes unused code. For example, it omits an `IF` statement whose body does nothing and any variable that is never used. Variables declared within local functions are an exception and are not removed.
+
 
 1. Function declarations:
 	Function without arguments:
 [FN:test]
-psh:({}) -> NULL VALUE (No text is written)
+psh:({}) -> NULL VALUE (No text is written) #compiller leaves it out!
 [/FN:test]
 
 Operators:
