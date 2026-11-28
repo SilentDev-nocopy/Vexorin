@@ -2,6 +2,59 @@ Veroxin is a compiled language with its own compiler.
 The compiler reports every error and prevents compilation until all errors are resolved.
 The compiler is written in Go.
 
+"[]" usage:		#name: declaration keyword
+	in functions: marks the beginning and end of a function declaration. -> [FN:function_name][/FN:function_name]
+	in variables: used to declare new variables and access existing ones for editing and customization.
+		differences:
+			declaring a new variable: [varname:int=1]
+
+			accessing an existing variable: varname[]
+
+
+	in if statements: marks the beginning and end of an if statement. -> [IF:][/FN]
+
+
+
+"{}" usage:		#name: bundle/list keyword
+	in bundling:
+		Use curly braces to group variables or other data. They tell the program to process every item inside the braces.
+
+
+"@" usage:		#name: edit/modify keyword
+	The "@" keyword is used to modify an existing variable. It must be followed by the property you want to edit.
+
+	To change a variable's type:
+		varname[@type:int=1]
+
+	To change only a variable's value:
+		varname[@value:int=2]
+
+	To change both its type and value:
+		varname[@type&value:flt=3.1]
+
+
+
+
+"&" usage:		#name: connect/combine keyword
+	The "&" keyword is used to combine multiple edit operations into a single modification.
+
+
+
+"$" usage:		#name: includer keyword
+
+
+
+
+
+";" usage:		#name: "big" separate
+	Separates statements such as functions and variables. It allows multiple statements to be written on the same line.
+
+
+"," usage:		#name "small" separate
+	Separates items in a list.
+
+
+
 
 Function with one argument:
 [FN:test, [{variable_name:int=1}]]
@@ -12,7 +65,7 @@ Output:1
 -------------------------
 
 Function with multiple arguments:
-[FN:test, [{test_1:flt=0.1},{test_2:string=asd}]]
+[FN:test, {test_1}, {test_2}]  #test_1:flt=0.1 test_2:str=asd
 psh:({test_1},{test_2})
 
 [/FN:test]
@@ -21,7 +74,7 @@ Output:0.1asd
 -------------------------
 
 Variable types:
-	string = text
+	str = text
 	flt = floating point number
 	int = integer
 	bool = true/false = TRUE/FALSE, shortened -> T/F
@@ -59,8 +112,8 @@ Functions can be local or global. To set their access location, add "$Local" or 
 Local functions are available only in the file where they are written and cannot be exported or accessed from other files.
 Global functions can be exported and accessed from outside their owning file.
 
-";" separates statements such as functions and variables. It allows multiple statements to be written on the same line.
-"," separates items in a list.
+
+
 
 To access code from another `.vex` file, use `$Include filename.vex`. To include multiple files, place their names inside `{}` and separate them with commas.
 
@@ -83,7 +136,15 @@ Memory management:
 	In manual mode, the compiler does not manage memory. You are responsible for handling it yourself, which can be risky and dangerous.	
 	To turn automatic memory management off compitly, use the "!Manual!" on top of the file.
 
-	
+
+	In automatic mode:
+		After a function is no longer called -> free
+		After declaration, the variables kept in memory. They have to be freed manual by hand. "!-"
+
+
+
+
+	in manual mode:
 
 
 
