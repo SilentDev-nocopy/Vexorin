@@ -1,7 +1,7 @@
 Functions (color: yellow): [FN:function_name], [FN:function_name, [{argument_name:type=default_value}]], [/FN:function_name], function_name[], psh:
 Conditions (color: orange): IF, ELIF, ELSE, DO, PASS, [/IF], [/ELIF], [/ELSE]
 Keywords/directives (color: burgundy): $Global, $Local, $Include, $Module, !Manual!, %
-@-keywords (color: red): @Global, @type, @value, @type&value; every token starting with @ is red
+@-keywords (color: red): @type, @value, @type&value; every token starting with @ is red
 Types (color: pink ): string, flt, int, bool, mod
 Boolean values (color: cyan): true, false, TRUE, FALSE, T, F
 Operators (color: turkish): ==, =, !=, <, !<, >, !>, <=, >=

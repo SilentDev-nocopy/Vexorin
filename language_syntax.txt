@@ -11,7 +11,7 @@ The compiler is written in Go.
 			accessing an existing variable: varname[]
 
 
-	in if statements: marks the beginning and end of an if statement. -> [IF:][/FN]
+	in if statements: marks the beginning and end of an if statement. -> [IF:][/IF]
 
 
 
@@ -56,23 +56,6 @@ The compiler is written in Go.
 
 
 
-Function with one argument:
-[FN:test, [{variable_name:int=1}]]
-psh:({variable_name})
-[/FN:test]
-
-Output:1
--------------------------
-
-Function with multiple arguments:
-[FN:test, {test_1}, {test_2}]  #test_1:flt=0.1 test_2:str=asd
-psh:({test_1},{test_2})
-
-[/FN:test]
-
-Output:0.1asd
--------------------------
-
 Variable types:
 	str = text
 	flt = floating point number
@@ -86,7 +69,7 @@ Indentation is not used!
 Separate scopes are not used!
 
 Global variable -> $Global [variable_name:int=1] # You can bundle multiple variables together instead of writing "$Global" before each one. To bundle them, use "{}". Example: "$Global {[variable_name:int=1],[variable_name_2:flt=3]}"
-Local variable (accessible only inside the calling function) -> $Local [FN:asd, [{variable_name:string=asd}]]. To use multiple variables: [FN:asd, [{variable_name:string=asd},{variable_name_2:string=asd_ketto}]]
+Local variable (accessible only inside the calling function) -> $Local [FN:asd, [variable_name:str=asd]]. To use multiple variables: [FN:asd, {[variable_name:str=asd],[variable_name_2:str=asd_ketto]}]
 
 
 
@@ -120,7 +103,7 @@ To access code from another `.vex` file, use `$Include filename.vex`. To include
 To access additional, non-built-in features, include modules with the `$Module` keyword. For example, use `$Module module_name`. To include multiple modules, enclose their names in `{}` and separate them with commas.
 
 To set a module to a variable write this:
-@Global	[variable_name:mod=$Module:module_name] -> yes, here you have to put colon after $Module, otherwise the compiler may interpret the module name as a regular value instead of a module reference. 
+$Global	[variable_name:mod=$Module:module_name] -> yes, here you have to put colon after $Module, otherwise the compiler may interpret the module name as a regular value instead of a module reference. 
 
 To declare a constant variable type, place "%" before the variable type. "%" is the constant keyword. For example: `[variable_name:%int=1]`. The value can be changed.
 To declare a constant variable value, use the "%" keyword before the value. For example: `[variable_name:int=%100]`. The value is fixed, but the variable type can still be changed.
