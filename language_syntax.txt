@@ -81,7 +81,11 @@ Memory management:
 	Memory management is automatic by default, but you can override or disable it. These options are not recommended for beginners.
 	In automatic mode, the compiler manages memory for you, aiming for reliable and consistent memory usage.
 	In manual mode, the compiler does not manage memory. You are responsible for handling it yourself, which can be risky and dangerous.	
+	To turn automatic memory management off compitly, use the "!Manual!" on top of the file.
+
 	
+
+
 
 1. Function declarations:
 	Function without arguments:
